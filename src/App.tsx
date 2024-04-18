@@ -28,9 +28,13 @@ function App() {
    <Routes>
       <Route path='/' element={<Loyout/>}>
         <Route index element={<Home/>} />
-        <Route path='/sign' element={<Sign />} />
-        <Route path='/signup' element={<SignUp />} />
         <Route path='*' element={<NotFound/>} />
+        {user == null && 
+          <>
+            <Route path='/sign' element={<Sign />} /> 
+            <Route path='/signup' element={<SignUp />} />
+          </>
+        }
       </Route>
       {user != null && user.role === 'admin' &&
         <Route path='/admin' element={<Dashborard/>}>

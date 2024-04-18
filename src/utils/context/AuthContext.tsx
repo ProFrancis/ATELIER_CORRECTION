@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const logout = () => {
+  const logout = () => {    
     setIsLoading(true)
     setUser(null) // Réinitialise l'état de l'utilisateur à null 
     
