@@ -1,48 +1,42 @@
-import { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-// CONTEXT
-import { AuthContext } from './utils/context/AuthContext'
-
 // PAGES ADMIN 
-import Dashborard from './components/admin/template/Dashborard'
-import AdminArticle from './admin/pageArticle/AdminArticle'
 import AdminUser from './admin/pageUser/AdminUser'
+import AdminArticle from './admin/pageArticle/AdminArticle'
+import Dashborard from './components/admin/template/Dashborard'
 
 // PAGES AND COMPONENTS
-import Loyout from './components/loyout/Loyout'
+import Home from './pages/pageHome/Home'
 import Sign from './pages/pageAuth/Sign'
 import SignUp from './pages/pageAuth/SignUp'
-import Home from './pages/pageHome/Home'
+import Loyout from './components/loyout/Loyout'
 import NotFound from './pages/pageNotFound/NotFound'
 
+// SERVICES
+import PublicRoute  from './utils/services/PublicRoute'
+import PrivateRoute from './utils/services/PrivateRoute'
 
 // CSS 
 import './App.css'
 
-
 function App() {
-  const { isLoading, user } = useContext(AuthContext);
-
   return (
-   <Routes>
+   <Routes >
       <Route path='/' element={<Loyout/>}>
         <Route index element={<Home/>} />
         <Route path='*' element={<NotFound/>} />
-        {user == null && 
-          <>
-            <Route path='/sign' element={<Sign />} /> 
-            <Route path='/signup' element={<SignUp />} />
-          </>
-        }
-      </Route>
-      {user != null && user.role === 'admin' &&
-        <Route path='/admin' element={<Dashborard/>}>
-          <Route path='/admin/article' element={<AdminArticle />} />
-          <Route path='/admin/article' element={<AdminArticle />} />
-          <Route path='/admin/user' element={<AdminUser />} />
+        <Route element={<PublicRoute/>} > {/* Public route bloque l'acces aux pages qui ne doivent pas s'afficher quand nous sommes connecté */}
+          <Route path='/sign' element={<Sign/>} /> 
+          <Route path='/signup' element={<SignUp/>} />
         </Route>
-      }
+      </Route>
+      <Route element={<PrivateRoute/>} >
+        <Route path='/admin' element={<Dashborard/>}>
+            <Route path='/admin/article' element={<AdminArticle />} />
+            <Route path='/admin/article' element={<AdminArticle />} />
+            <Route path='/admin/user' element={<AdminUser />} />
+          </Route>
+      </Route>
    </Routes>
   )
 }
