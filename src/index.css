@@ -12,10 +12,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+ul{
+  list-style: none;
+  display: flex;
+}
+
+li{
+  margin: 0rem 0.5rem;
+}
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #ffffff;
   text-decoration: inherit;
 }
 a:hover {
