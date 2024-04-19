@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 // PAGES ADMIN 
 import AdminUser from './admin/pageUser/AdminUser'
 import AdminArticle from './admin/pageArticle/AdminArticle'
-import Dashborard from './components/admin/template/Dashborard'
+import Dashborard from './components/admin/template/template'
 
 // PAGES AND COMPONENTS
 import Home from './pages/pageHome/Home'
@@ -13,8 +13,8 @@ import Loyout from './components/loyout/Loyout'
 import NotFound from './pages/pageNotFound/NotFound'
 
 // SERVICES
-import PublicRoute  from './utils/services/PublicRoute'
-import PrivateRoute from './utils/services/PrivateRoute'
+import PublicRoute  from './utils/helpers/PublicRoute'
+import PrivateRoute from './utils/helpers/PrivateRoute'
 
 // CSS 
 import './App.css'
@@ -32,9 +32,8 @@ function App() {
       </Route>
       <Route element={<PrivateRoute/>} >
         <Route path='/admin' element={<Dashborard/>}>
-            <Route path='/admin/article' element={<AdminArticle />} />
-            <Route path='/admin/article' element={<AdminArticle />} />
             <Route path='/admin/user' element={<AdminUser />} />
+            <Route path='/admin/article' element={<AdminArticle />} />
           </Route>
       </Route>
    </Routes>

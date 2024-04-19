@@ -18,7 +18,10 @@ const Header = () => {
             <li><Link to='/signup'>signup</Link></li>
           </>
           :
-          <li onClick={logout}>Logout</li>
+          <>
+            <li ><Link to='/admin'>DashBoard</Link></li>
+            <li onClick={logout}>Logout</li>
+          </>
         }
         </ul>
       </nav>
