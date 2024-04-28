@@ -3,12 +3,13 @@ import { Routes, Route } from 'react-router-dom'
 // PAGES ADMIN 
 import AdminUser from './admin/pageUser/AdminUser'
 import AdminArticle from './admin/pageArticle/AdminArticle'
-import Dashborard from './components/admin/template/template'
+import Dashboard from './admin/pageDashboard/Dashboard'
 
 // PAGES AND COMPONENTS
 import Home from './pages/pageHome/Home'
 import Sign from './pages/pageAuth/Sign'
 import SignUp from './pages/pageAuth/SignUp'
+import Detail from './pages/pageDetail/Detail'
 import Loyout from './components/loyout/Loyout'
 import NotFound from './pages/pageNotFound/NotFound'
 
@@ -24,14 +25,15 @@ function App() {
    <Routes >
       <Route path='/' element={<Loyout/>}>
         <Route index element={<Home/>} />
+        <Route path='/detail/:id' element={<Detail/>} />
         <Route path='*' element={<NotFound/>} />
-        <Route element={<PublicRoute/>} > {/* Public route bloque l'acces aux pages qui ne doivent pas s'afficher quand nous sommes connecté */}
+        <Route element={<PublicRoute/>} >
           <Route path='/sign' element={<Sign/>} /> 
           <Route path='/signup' element={<SignUp/>} />
         </Route>
       </Route>
       <Route element={<PrivateRoute/>} >
-        <Route path='/admin' element={<Dashborard/>}>
+        <Route path='/admin' element={<Dashboard/>}>
             <Route path='/admin/user' element={<AdminUser />} />
             <Route path='/admin/article' element={<AdminArticle />} />
           </Route>

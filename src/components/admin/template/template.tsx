@@ -11,6 +11,9 @@ const Tempalte = () => {
               <Link to='/admin'>DashBoard</Link>
             </li>
             <li>
+              <Link to='/'>App</Link>
+            </li>
+            <li>
               <Link to='/admin/article'>Article</Link>
             </li>
             <li>

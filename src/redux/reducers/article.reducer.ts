@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
 
 const initialState = {
@@ -18,9 +18,9 @@ export const Articles = createSlice({
       store.loading = false
       store.data = actions.payload
     },
-    FETCH_ARTICLE_SUCCES_DETAIL:  (store , actions ) => {
-      store.loading = false      
-      store.data = actions.payload
+    FETCH_ARTICLE_SUCCES_DETAIL:  (store, actions) => {
+      store.loading = false            
+      store.data = actions.payload.data.find(item => item._id == actions.payload.id)
     },
     FETCH_ARTICLE_FAILURE: (store) => {
       store.loading = false
