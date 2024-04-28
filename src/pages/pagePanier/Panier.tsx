@@ -1,62 +1,57 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+
+// CONTEXTE
+import { PanierContext } from '../../utils/context/PanierContext';
 
 const Panier = () => {
-  const [panier, setPanier] = useState();
-
-  // Récupére le panier dans le storage
-  useEffect(() => {
-    const loadPanier = async () => {
-      try {
-        const panierJSON = await localStorage.getItem("panier");
-        if (panierJSON !== null) {
-          const panierStorage = JSON.parse(panierJSON);
-          setPanier(panierStorage);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    loadPanier();
-  }, []);
-
-  const incremente = (index) => {
-    const nouveauPanier = [...panier]
-    nouveauPanier[index].quantite++
-    setPanier(nouveauPanier)
-  }
-
-  const decremente = (index) => {
-    const nouveauPanier = [...panier]
-    if(nouveauPanier[index].quantite > 1){
-      nouveauPanier[index].quantite--
-      setPanier(nouveauPanier)
-    }
-  }
-
-
+  const { incremente , decremente, panier, priceArticleByQuantity, totalPrice,removeArticle, totalArticle } = useContext(PanierContext)
+  
   return (
-    <div> 
+    <section > 
       {panier ? 
       <>
+        <div style={styles.root}>
           {panier.map((article, index) => (
             <div key={index}>
-              <h2>{article.name}</h2>
+              <p style={styles.title}>{article.name}</p>
               <img
-                style={{ width: 150, height: 200 }}
+                style={{ width: 170}}
                 src={article.picture[0].img}
               />
-              <p>Prix : {article.price} $</p>
-              <p onClick={() => decremente(index)}>-</p>
-              <p>{article.quantite}</p>
-              <p onClick={() => incremente(index)} >+</p>
+              <p>Prix : {priceArticleByQuantity(article.price, article.quantite)} $</p>
+              <div style={styles.quantity}>
+                <p style={styles.click} onClick={() => decremente(index)}>-</p>
+                <p>{article.quantite}</p>
+                <p style={styles.click} onClick={() => incremente(index)} >+</p>
+              </div>
             </div>
           ))}
-        </>
+        </div>
+        <div>
+          <p>Total du panier : {totalPrice}</p>
+          <button>Passer la commande ({totalArticle()} articles)</button>
+        </div>
+      </>
        : 
         <p>Panier Vide ! </p>
       }
-    </div>
+    </section>
   )
+}
+const styles = {
+  root: {
+    display: 'flex',
+  },
+  quantity: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: '0.7em'
+  },
+  click: {
+    cursor: 'pointer',
+  }
 }
 
 export default Panier

@@ -44,12 +44,12 @@ const Card = () => {
  }, [])
 
   return (
-    <div>
+    <div style={styles.root}>
       {store && store.map((item, index) => (
-        <div key={index}>
+        <div style={styles.article} key={index}>
           <Link to={`/detail/${item._id}`} >
-            <img src={item.picture[0].img} width={100} />
-            {item.name}
+            <img src={item.picture[0].img} width={200} />
+            <p style={styles.title}>{item.name}</p>
           </Link>
         </div>
       ))}
@@ -57,4 +57,15 @@ const Card = () => {
   )
 }
 
+const styles = {
+  root: {
+    display: 'flex',
+  },
+  title: {
+    fontSize: '0.55em'
+  },
+  article: {
+    margin: "0rem 1rem"
+  }
+}
 export default Card

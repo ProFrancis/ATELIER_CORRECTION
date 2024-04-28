@@ -12,6 +12,7 @@ import SignUp from './pages/pageAuth/SignUp'
 import Detail from './pages/pageDetail/Detail'
 import Loyout from './components/loyout/Loyout'
 import NotFound from './pages/pageNotFound/NotFound'
+import Panier from './pages/pagePanier/Panier'
 
 // SERVICES
 import PublicRoute  from './utils/helpers/PublicRoute'
@@ -26,6 +27,7 @@ function App() {
       <Route path='/' element={<Loyout/>}>
         <Route index element={<Home/>} />
         <Route path='/detail/:id' element={<Detail/>} />
+        <Route path='/panier' element={<Panier/>} />
         <Route path='*' element={<NotFound/>} />
         <Route element={<PublicRoute/>} >
           <Route path='/sign' element={<Sign/>} /> 
@@ -34,9 +36,9 @@ function App() {
       </Route>
       <Route element={<PrivateRoute/>} >
         <Route path='/admin' element={<Dashboard/>}>
-            <Route path='/admin/user' element={<AdminUser />} />
-            <Route path='/admin/article' element={<AdminArticle />} />
-          </Route>
+          <Route path='/admin/user' element={<AdminUser />} />
+          <Route path='/admin/article' element={<AdminArticle />} />
+        </Route>
       </Route>
    </Routes>
   )
