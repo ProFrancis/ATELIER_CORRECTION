@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         setUser(data)
         
         // Stockez les données de l'utilissateur dans le asynctorage
-       localStorage.setItem('user', JSON.stringify(user))
+       await localStorage.setItem('user', JSON.stringify(user))
 
         // Met isLoading à false apres une authentification réussie.
         setIsLoading(false)
