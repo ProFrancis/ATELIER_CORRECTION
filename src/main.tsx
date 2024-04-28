@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 // CONTEXT
 import { AuthProvider } from './utils/context/AuthContext'
 import { PanierProvider } from './utils/context/PanierContext.tsx'
+import { StripeProvider } from './utils/context/StripeContext.tsx'
 
 // REDUX
 import store from "./redux/store"
@@ -17,9 +18,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Provider store={store} >
       <AuthProvider>
         <PanierProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <StripeProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </StripeProvider>
         </PanierProvider>
       </AuthProvider>
     </Provider>

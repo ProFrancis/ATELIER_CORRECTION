@@ -11,5 +11,7 @@ export const URL = {
   GET_ONE_ARTICLE: 'http://localhost:8090/api/article/get',
   POST_ARTICLE: 'http://localhost:8090/api/article/add',
   DELETE_ARTICLE: 'http://localhost:8090/api/article/delete',
-  UPDATE_ARTICLE: 'http://localhost:8090/api/article/update'
+  UPDATE_ARTICLE: 'http://localhost:8090/api/article/update',
+
+  PAYMENT: 'http://localhost:8090/api/pay/intent'
 }

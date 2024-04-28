@@ -67,10 +67,10 @@ export const PanierProvider = ({ children }) => {
     setPanier(nouveauPanier)
   }
 
-  const addPanier = async (product) => {
+  const addPanier = (product) => {
     try {
       // Recupérer le panier depuis le storage
-      const panier = await localStorage.getItem("panier");
+      const panier = localStorage.getItem("panier");
       let nouveauPanier = [];
   
       if (panier !== null) {
@@ -98,9 +98,8 @@ export const PanierProvider = ({ children }) => {
     }
   }
 
-
   return (
-    <PanierContext.Provider value={{ incremente , decremente, addPanier, priceArticleByQuantity, totalArticle,  panier, totalPrice }} >
+    <PanierContext.Provider value={{ incremente , decremente, addPanier, priceArticleByQuantity, removeArticle, totalArticle,  panier, totalPrice }} >
       {children}
     </PanierContext.Provider>
   )
